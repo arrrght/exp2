@@ -7,7 +7,12 @@
 		<!-- <script type='text/javascript' src='ext4/builds/ext-core-debug.js'></script> -->
 		<script type="text/javascript" charset="utf-8">
 			Ext.Loader.setConfig({ enabled: true, disableCaching: false, paths: { 'App': '/app', 'Ext': '/ext4/src' } });
-			Ext.application({ name: "App", controllers: [ "Apps" ] });
+			Ext.application({ name: 'App', controllers: [ 'Apps', 'Users' ] });
+
+			Ext.onReady(function(){
+				var win = Ext.create('App.view.Org');
+				win.show();
+			});
 		</script>
 </head>
 <body><body>

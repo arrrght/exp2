@@ -4,5 +4,19 @@ Ext.define('App.controller.Apps', {
 	stores: [ 'Orgs' ],
 	models: [ 'Org' ],
 
-	init: function() { }
+	requires: [ 'App.view.Org' ],
+
+	init: function() {
+		this.control({
+			'mainToolbar button[action=orgNew]': {
+				click: this.newOrg
+			},
+		});
+	},
+
+	newOrg: function(btn){
+		console.log('* Button :newOrg: was pressed', btn);
+		var win = Ext.create('App.view.Org');
+		win.show();
+	}
 });

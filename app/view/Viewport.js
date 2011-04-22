@@ -2,7 +2,7 @@ Ext.define('App.view.Viewport', {
     extend: 'Ext.container.Viewport',
 		layout: 'fit',
 
-    requires: [ 'App.view.org.My' ],
+    requires: [ 'App.view.org.My', 'App.view.MainToolbar' ],
 		
 		initComponent: function() {
 			var me = this;
@@ -10,6 +10,9 @@ Ext.define('App.view.Viewport', {
 				items: {
 					xtype: 'panel',
 					layout: { type: 'hbox', align: 'stretch' },
+
+					dockedItems: { xtype: 'mainToolbar' },
+
 					items: [{
 						// Организации
 						flex: 1, xtype: 'panel', layout: 'accordion',
