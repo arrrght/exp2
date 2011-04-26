@@ -4,7 +4,13 @@
 
 var express = require('express');
 
-var app = module.exports = express.createServer();
+var app = module.exports = express.createServer(),
+    mongoStore = require('connect-mongodb');
+		//jsz = require(__dirname + '/lib/jsz');
+
+// Global
+Mongoose = require('mongoose');
+Mongoose.connect('mongodb://localhost/foo');
 
 // Configuration
 
@@ -18,6 +24,8 @@ app.configure(function(){
 
   app.use(express.bodyParser());
   app.use(express.methodOverride());
+  app.use(express.cookieParser());
+  app.use(express.session({ secret: 'your secret here', store: mongoStore({ dbname: 'foo' }) }));
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
 
@@ -33,6 +41,8 @@ app.configure('production', function(){
 });
 
 // Routes
+
+require(__dirname + '/lib/h2e4.js').init(__dirname, app);
 
 app.get('/app/*', function(req, res){
 	res.header('Content-type', 'text/javascript');

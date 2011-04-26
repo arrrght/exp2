@@ -2,6 +2,8 @@ Ext.define('App.view.Org', {
 	extend: 'Ext.window.Window',
 	alias: 'orgWin',
 
+	requires: [ 'App.view.org.Tyres' ],
+
 	initComponent: function(){
 		Ext.apply(this, {
 
@@ -23,6 +25,7 @@ Ext.define('App.view.Org', {
 					//p2,
 					{ title: 'Договора', html: 'Договора' },
 					{ title: 'Продажи', html: 'Продажи' },
+					{ title: 'Техническая база', xtype: 'orgWinTyres' },
 					{ title: 'Техническая база', html: 'Техническая база' },
 					{ title: 'Отчеты', html: 'Отчеты' },
 				]
