@@ -3,41 +3,28 @@ Ext.define('App.view.org.Tyres', {
 	alias: 'widget.orgWinTyres',
 	store: 'Tyres',
 
-	features:
-	[{
-		ftype: 'grouping'
-	}],
-	
+	// features: [{ ftype: 'grouping' }],
 
 	initComponent: function(){
 		Ext.apply(this, {
 
 			tbar: ['-',{
-				//bodyStyle: 'padding: 55px 0 0 0;',
-				xtype: 'textfield', name: 'smart', emptyText: 'Как бы умный поиск', flex:1, padding: { right: 50 }
+				xtype: 'textfield', name: 'smart', emptyText: 'Как бы умный поиск', flex:1
+			},'-',{
+				xtype: 'tbtext', name: 'info', text: 'Search info', flex: 2
 			},'-'],
 
-			bbar: [
-				{
-					xtype: 'button', action: 'tst1', text: 'TST1'
-				},{
-					xtype: 'button', action: 'tst2', text: 'TST2'
-				}, '-',{
-					xtype: 'tbtext', name: 'info', text: 'Search info', flex: 1
-				}, '-'
-			],
+			bbar: [{ xtype: 'button', name: 'tmp1', text: 'BTN1' }],
 
-			/*
-			verticalScroller: {
-				xtype: 'paginggridscroller',
-				activePrefetch: false
-			},
-			*/
+			// verticalScroller: {
+			// 	xtype: 'paginggridscroller',
+			// 	activePrefetch: false
+			// },
 			
-			//loadMask: true,
-			//disableSelection: true,
-			//invalidateScrollerOnRefresh: false,
-			//viewConfig: { trackOver: false },
+			// loadMask: true,
+			// disableSelection: true,
+			invalidateScrollerOnRefresh: false,
+			// viewConfig: { trackOver: false },
 			
 		
 			columns:  [{
@@ -49,7 +36,9 @@ Ext.define('App.view.org.Tyres', {
 			},{
 				header: 'Слойность', dataIndex: 'lay', flex:1
 			},{
-				header: 'TRA', dataIndex: 'tra', flex:1
+				header: 'Тип протектора', dataIndex: 'tra', flex:1
+			},{
+				header: 'Имя', dataIndex: 'name', flex:1
 			},{
 				header: 'Диаметер', dataIndex: 'd', flex:1
 			},{
