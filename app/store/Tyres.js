@@ -7,6 +7,7 @@ Ext.define('App.store.Tyres', {
 
 		//groupField: 'brand',
 		autoLoad: true,
+		remoteFilter: true,
 
 		proxy: {
 			//type: 'localstorage', id: 'tyres'
