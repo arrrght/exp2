@@ -14,7 +14,7 @@ Ext.define('App.view.org.Tyres', {
 				xtype: 'tbtext', name: 'info', text: 'Search info', flex: 2
 			},'-'],
 
-			bbar: [{ xtype: 'button', name: 'tmp1', text: 'BTN1' }],
+			// bbar: [{ xtype: 'button', name: 'tmp1', text: 'BTN1' }],
 
 			// verticalScroller: {
 			// 	xtype: 'paginggridscroller',

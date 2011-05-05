@@ -12,21 +12,18 @@ Ext.define('App.view.Org', {
 			title: 'Редактирование карточки предприятия, Время [ у нас - 13:40, у них - 18:40 ]',
 			height: 430, width: 800, layout: 'fit',
 			//border: true,
-			bodyStyle: 'background-color: #DFE8F6; padding:5px 5px 0;',
+			bodyStyle: 'background-color: #DFE8F6; padding:5px 5px 5px 5px;',
 
 			items: [{
-				xtype: 'tabpanel', layout: 'fit', border: false,
+				xtype: 'tabpanel', layout: 'fit',// border: false,
 				activeItem: 4, activeTab: 4,
 				//tabPosition: 'bottom',
 				items: [ 
 					{ xtype: 'orgBaseInfo' },
 					{ xtype: 'orgContacts' },
-					//p1,
-					//p2,
 					{ title: 'Договора', html: 'Договора' },
 					{ title: 'Продажи', html: 'Продажи' },
 					{ title: 'Техническая база', xtype: 'orgWinTyres' },
-					{ title: 'Техническая база', html: 'Техническая база' },
 					{ title: 'Отчеты', html: 'Отчеты' },
 				]
 			}]

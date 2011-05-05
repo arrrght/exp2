@@ -6,11 +6,9 @@ Ext.define('App.model.Tyre', {
 		{ name: 'brand', type: 'string' }, // Bridgestone
 		{ name: 'name', type: 'string' },  // VKT
 		{ name: 'posD', type: 'float' },  // 25
-		//{ name: 'hS', type: 'string' },    // 25/65, 26.5
 		{
 			name: 'hS', type: 'string', convert: function(val, record){
 				return (val + record.data.tp + record.data.posD);
-				//console.log(val, record);
 			}
 		},
 		{ name: 'tType', type: 'string' }, // Tubeless

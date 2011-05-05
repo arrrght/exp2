@@ -11,6 +11,7 @@ var app = module.exports = express.createServer(),
 // Global
 Mongoose = require('mongoose');
 Mongoose.connect('mongodb://localhost/foo');
+Ext = require(__dirname + '/lib/h2e4.js').init(__dirname, app);
 
 // Configuration
 
@@ -42,7 +43,7 @@ app.configure('production', function(){
 
 // Routes
 
-require(__dirname + '/lib/h2e4.js').init(__dirname, app);
+//require(__dirname + '/lib/h2e4.js').init(__dirname, app);
 
 app.get('/app/*', function(req, res){
 	res.header('Content-type', 'text/javascript');
