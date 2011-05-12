@@ -6,7 +6,6 @@ var express = require('express');
 
 var app = module.exports = express.createServer(),
     mongoStore = require('connect-mongodb');
-		//jsz = require(__dirname + '/lib/jsz');
 
 // Global
 Mongoose = require('mongoose');
@@ -14,7 +13,6 @@ Mongoose.connect('mongodb://localhost/foo');
 Ext = require(__dirname + '/lib/h2e4.js').init(__dirname, app);
 
 // Configuration
-
 app.configure(function(){
   app.use(express.logger({ format: '\x1b[32m:method\x1b[0m \x1b[33m:url\x1b[0m :response-time ms' }))
   app.set('views', __dirname + '/app');
@@ -42,9 +40,6 @@ app.configure('production', function(){
 });
 
 // Routes
-
-//require(__dirname + '/lib/h2e4.js').init(__dirname, app);
-
 app.get('/app/*', function(req, res){
 	res.header('Content-type', 'text/javascript');
 	res.partial(__dirname + req.url);
@@ -55,7 +50,6 @@ app.get('/', function(req, res){
 });
 
 // Only listen on $ node app.js
-
 if (!module.parent) {
   app.listen(3000);
   console.log("Express server listening on port %d", app.address().port);

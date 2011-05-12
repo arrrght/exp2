@@ -12,22 +12,23 @@ Ext.define('App.view.MainToolbar',{
 					// New
 					{ text: 'Новая', action: 'orgNew' },
 					// Filter
-					{ text: 'Фильтр' }
+					{ text: 'Фильтр', action: 'orgAddContact' }
 				]
 			},{
 				xtype: 'buttongroup', title: 'Ежедневник', columns: 3,
 				items: [
-					// New
 					{ text: 'Новая задача' },
-					// Filter
 					{ text: 'Фильтр' }
 				]
 			},{
 				xtype: 'buttongroup', title: 'Администрирование', columns: 3,
 				items: [
-					// Users
+					{ text: 'Справочники', menu: [
+						{ text: 'Техника' },
+						{ text: 'Шины' },
+						{ text: 'Умный поиск' },
+					]},
 					{ text: 'Пользователи', action: 'users' },
-					// Log
 					{ text: 'Лог' }
 				]
 			}]

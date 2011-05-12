@@ -4,14 +4,13 @@
 	<title>Ext1</title>
 		<link rel='stylesheet' href='ext4/resources/css/ext-all.css'/>
 		<script type='text/javascript' src='ext4/bootstrap.js'></script>
-		<!-- <script type='text/javascript' src='ext4/builds/ext-core-debug.js'></script> -->
 		<script type="text/javascript" charset="utf-8">
 			Ext.Loader.setConfig({ enabled: true, disableCaching: false, paths: { 'App': '/app', 'Ext': '/ext4/src' } });
-			Ext.application({ name: 'App', controllers: [ 'Apps', 'Users' ] });
+			// Ext.application({ name: 'App', controllers: [ 'Apps', 'Users' ] });
+			Ext.application({ name: 'App', controllers: [ 'Apps', 'Org', 'ChooserTechTyre' ] });
 
 			Ext.onReady(function(){
-				var win = Ext.create('App.view.Org');
-				win.show();
+				// Ext.create('App.view.ChooserTechTyre').show();
 			});
 		</script>
 </head>

@@ -1,36 +1,41 @@
 Ext.define('App.view.Org', {
 	extend: 'Ext.window.Window',
-	alias: 'orgWin',
+	alias: 'widget.orgWin',
 
-	requires: [ 'App.view.org.Tyres' ],
+	requires: [
+		'App.view.ChooserTechTyre',
+		'App.view.org.ExistsBase'
+	],
 
-	initComponent: function(){
-		Ext.apply(this, {
+	initComponent: function(){ Ext.apply(this, {
+		modal: true,
 
-			modal: true,
-			bbar: ['->', { xtype: 'button', text: 'Сохранить карточку организации' }],
-			title: 'Редактирование карточки предприятия, Время [ у нас - 13:40, у них - 18:40 ]',
-			height: 430, width: 800, layout: 'fit',
-			//border: true,
-			bodyStyle: 'background-color: #DFE8F6; padding:5px 5px 5px 5px;',
+		bbar: ['->',{ 
+			xtype: 'button', text: 'Изменить', action: 'changeTab'
+		},'-',{
+			xtype: 'button', text: 'Сохранить карточку организации'
+		}],
 
-			items: [{
-				xtype: 'tabpanel', layout: 'fit',// border: false,
-				activeItem: 4, activeTab: 4,
-				//tabPosition: 'bottom',
-				items: [ 
-					{ xtype: 'orgBaseInfo' },
-					{ xtype: 'orgContacts' },
-					{ title: 'Договора', html: 'Договора' },
-					{ title: 'Продажи', html: 'Продажи' },
-					{ title: 'Техническая база', xtype: 'orgWinTyres' },
-					{ title: 'Отчеты', html: 'Отчеты' },
-				]
-			}]
-		}); this.callParent(arguments);
-	}
+		title: 'Редактирование карточки предприятия, Время [ у нас - 13:40, у них - 18:40 ]',
+		height: 430, width: 800, layout: 'fit',
+		bodyStyle: 'background-color: #DFE8F6; padding:5px 5px 5px 5px;',
+
+		items: [{
+			xtype: 'tabpanel', layout: 'fit',
+			activeItem: 4, activeTab: 4,
+			items: [ 
+				{ xtype: 'orgBaseInfo', tabName: 'info' },
+				{ xtype: 'orgContacts', tabName: 'contacts' },
+				{ title: 'Договора', tabName: 'contracts', html: 'Договора' },
+				{ title: 'Продажи', tabName: 'sales', html: 'Продажи' },
+				{ title: 'Техническая база', tabName: 'techBase', xtype: 'existsBase' },
+				{ title: 'Отчеты', tabName: 'reports', html: 'Отчеты' },
+			]
+		}]
+	}); this.callParent(arguments); }
 });
 
+// Grid plugin for Contacts
 Ext.define('App.grid.plugin.RowExp', {
 	extend: 'Ext.AbstractPlugin',
 	alias: 'plugin.rowexp',
@@ -56,6 +61,7 @@ Ext.define('App.grid.plugin.RowExp', {
 	}
 });
 
+// Контакты
 Ext.define('App.view.Org.Contacts', {
 	extend: 'Ext.grid.GridPanel',
 	alias: 'widget.orgContacts',
@@ -100,13 +106,14 @@ Ext.define('App.view.Org.Contacts', {
 	}
 });
 
+// Основная инфа
 Ext.define('App.view.Org.BaseInfo', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.orgBaseInfo',
 
 	initComponent: function(){
 		Ext.apply(this, {
-			title: 'Основная информация', xtype: 'form', bodyStyle: 'background-color:#DFE8F6; padding: 5px 0 0 0;',
+			title: 'Основная информация', xtype: 'form', bodyStyle: 'background-color:#DFE8F6; padding: 5px;',
 			layout: { type: 'vbox', align: 'stretch' },
 			defaults: { height: 44, xtype: 'container', bodyStyle: 'background-color:#DFE8F6;', layout: 'hbox', border: false },
 			items: [{
@@ -159,7 +166,7 @@ Ext.define('App.view.Org.BaseInfo', {
 				},{
 					fieldLabel: 'Офис', margins: { right: 5 },
 				},{
-					flex:4, fieldLabel: 'Вышестоящая организация'
+					flex: 5, fieldLabel: 'Выш. организация'
 				}]
 			},{
 				flex:3, layout: { type: 'vbox', align: 'stretch' }, 
