@@ -1,1 +1,54 @@
 Sencha Ext4 MVC with nodejs and Mongoose. Try to get it work together in transparent.
+
+"
+- MGIMO finish?
+- Ask!
+" (Sorry for my english)
+
+It is not a library, but real app, and in the proccess i will do The Lib :)
+
+sSide --> { readAs: 'server side' }
+h2e4.js --> { nameAs: 'Helpers for Ext4' }
+
+Goals:
+Write less sSide code.
+Write shared code (same code works on server and client side simultaneously)
+Write sSide code in Ext4 Controller, or in separate file (with same structure as /app (?) )
+
+
+TODO: 
+Models: 
+Validators on model (server/client side and shared)
+
+Controllers:
+Controllers server/client side (shared or separate files)
+
+And too many more
+PS: some of that are impemented on my previous project, named exp1(/lib/jsz.js - direct for ext4)(look at githib), but it is too dirty.
+---
+
+Works now:
+Models ::
+Now we need to define only Ext4 model, eg:
+
+Ext.define('App.model.Org', {
+	extend: 'Ext.data.Model',
+
+	fields: [
+		{ name: 'id', type: 'string' },
+		{ name: 'stringField', type: 'string' },
+		{ name: 'floatField', type: 'int' }
+	],
+
+});
+
+When referring to that model from Ext4 client app(MVC), it is automatically translate(by lib/h2e4.js)
+to mongoose model, in to form like that:
+
+Mongoose.model({
+		stringField: String,
+		intField: Number,
+}, new Schema('Org'));
+
+Field 'id' simply ignored (by now).
+

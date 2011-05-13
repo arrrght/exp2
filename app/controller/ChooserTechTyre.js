@@ -61,6 +61,9 @@ Ext.define('App.controller.ChooserTechTyre', {
 			},
 			'chooserTyre textfield[name=smart]': {
 				change: this.filterTyre
+			},
+			'chooserTech textfield[name=smart]': {
+				change: this.filterTech
 			}
 		});
 	},

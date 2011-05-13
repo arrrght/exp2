@@ -12,7 +12,7 @@ Ext.define('App.view.MainToolbar',{
 					// New
 					{ text: 'Новая', action: 'orgNew' },
 					// Filter
-					{ text: 'Фильтр', action: 'orgAddContact' }
+					{ text: 'Фильтр[newContacts]', action: 'orgAddContact' }
 				]
 			},{
 				xtype: 'buttongroup', title: 'Ежедневник', columns: 3,
