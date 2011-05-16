@@ -30,20 +30,13 @@ Ext.define('App.view.chooserTechTyre.ExistsTech', {
 						xtype: 'textfield'
 					}
 				},
-				{ header: 'Кол-во', dataIndex: 'count', flex:2,
-					field: {
-						xtype: 'spinnerfield',
-						allowBlank: false,
+				{ header: 'Кол-во', dataIndex: 'count', xtype: 'numbercolumn', format: '0',  flex:2,
+					editor: {
+						xtype: 'numberfield', allowBlank: false, minValue: 1, maxValue: 150000,
 						onChange: function(){
 							// Kill me gently
 							this.up().fuckedInt = this.getValue();
 						},
-						onSpinUp: function(){
-							this.setValue((parseInt(this.getValue()) || 0) + 1);
-						},
-						onSpinDown: function(){
-							this.setValue((parseInt(this.getValue()) || 2) - 1);
-						}
 					}
 				},
 			]
