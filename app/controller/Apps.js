@@ -21,7 +21,7 @@ Ext.define('App.controller.Apps', {
 			},
 			'mainToolbar button[action=orgAddContact]': {
 				click: function(){
-					Ext.create('App.view.org.AddContact').show();
+					Ext.create('App.view.Cp').show();
 				}
 			},
 		});

@@ -37,8 +37,8 @@ Ext.define('App.controller.Org', {
 	changeTab: function(){
 		var funs = {
 			info: this.emptyFun,
-			contacts: this.emptyFun,
-			contracts: this.orgAddContact,
+			contacts: this.orgAddContact,
+			contracts: this.emptyFun,
 			sales: this.emptyFun,
 			techBase: this.orgEditBaseTechTyre,
 			reports: this.emptyFun,

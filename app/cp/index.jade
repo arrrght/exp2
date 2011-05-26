@@ -1,0 +1,145 @@
+html
+	head
+		title Коммерческое предложение
+		:less
+			#main {
+				width: 800;
+				margin: 0 auto;
+			}
+			.xCenter {
+				margin-top: 30px;
+				text-align: center;
+			}
+			.rem {
+				font-size: 110%;
+			}
+			#xHead { 
+				height: 180px;
+				#xAddr {
+					float: left;
+					text-align: center;
+					font-size: 110%;
+					padding-top: 20px;
+					padding-left: 20px;
+					//height: 300px;
+				}
+				#xLogo {
+					float: right;
+					padding-right: 50px;
+					img {
+						width: 150px;
+						height: 150px;
+						//height: 200px;
+					}
+				}
+			}
+			#xFromWhom {
+				//padding-top: 50px;
+				height: 100px;
+				#xFrom {
+					float: left;
+					//width: 200px;
+				}
+				#xWhom {
+					//width: 500px;
+					float: right;
+				}
+			}
+			.sign {
+					text-align: right;
+					margin-top: 30px;
+			}
+			.desc {
+				padding: 10px;
+				#img { width: 100px; float: left; }
+				#descD { margin-left: 130px; }
+			}
+			#xContent {
+				.xCenter {
+					margin-bottom: 20px;
+					font-size: 110%;
+				}
+				table {
+					margin-top: 10px;
+					margin-bottom: 20px;
+					text-align: center;
+					border-collapse: collapse;
+					width: 100%;
+					th {
+						height: 50px;
+					}
+					th, td {
+						border: 1px solid black;
+					}
+				}
+			}
+	body
+		#main
+			#xHead
+				#xAddr
+						.l 620014, Екатеринбург  
+						.l ул. Антона Валека, 13 оф. 319
+						.l тел./факс (343) 310-38-17
+						.l тел. 310-38-11 .. 17
+						.l ISQ 218953131
+						.l email: #{from.email}
+						.l www.ert-group.ru
+				#xLogo
+					img(src: '/images/logo.jpg')
+
+			hr
+			#xFromWhom
+				#xFrom
+					.l От: ООО "ЕРТ-Групп"
+					.l #{from.fio2}
+					.l Исх. № #{refNum}
+				#xWhom
+					.l Кому: #{whom.pos}
+					.l #{whom.fio1}
+					.l Дата: #{dat}
+			#xContent
+				.xCenter Уважаемый #{whom.fio2}!
+				.l Настоящим письмом сообщаем, что ООО ЕРТ-Групп имеет возможность осуществить поставку шин от производителя #{what.org}:
+				table
+					tr
+						td Размерность
+						td Норма слойности
+						td Классификация по TRA
+						td Модель
+						td Производитель
+						td Цена
+					tr
+						td #{what.size}
+						td #{what.ns}
+						td #{what.cls}
+						td #{what.name}
+						td #{what.org}
+						td #{what.price}
+				.desc
+					.xCenter Краткое описание
+					#img
+						img(src: what.img.src)
+					#descD
+						ul
+							- what.desc.forEach(function(item){
+								li= item
+							- })
+
+				.xCenter Краткие технические характеристики
+				table
+					tr
+						td Толщина протектора
+						td Диск
+						td Наружный диаметр
+						td Ширина
+						td Допустимая нагрузка(кг) при скорости 10 км/ч и давлении в шине 425 кПа
+					tr
+						td #{what.depth}мм
+						td #{what.disk}
+						td #{what.extD}
+						td #{what.height}
+						td #{what.load}
+				- if(rem){
+					.rem Примечание: #{rem}
+				- }
+				.sign С уважением, #{from.fio1}
