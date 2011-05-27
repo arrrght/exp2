@@ -7,6 +7,10 @@ Ext.define('App.view.Org', {
 		'App.view.org.ExistsBase'
 	],
 
+	setOrgId: function(id){
+		console.log(id);
+	},
+
 	initComponent: function(){ Ext.apply(this, {
 		modal: true,
 

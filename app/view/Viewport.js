@@ -19,14 +19,17 @@ Ext.define('App.view.Viewport', {
 						items: [{
 							xtype: 'orgMy'
 						},{
-							html: 'here21', title: 'here21'
+							title: 'Все организации',
+							html: 'here21'
 						}]
 					},{
 						// Ежедневник
 						flex: 1, xtype: 'panel', layout: 'accordion',
 						items: [{
-							html: 'here21'
+							title: 'Ежедневник',
+							html: 'Здесь будет ежедневник(задачи)'
 						},{
+							title: 'Ежедневник - выполненные задачи',
 							html: 'here22'
 						}]
 					}]

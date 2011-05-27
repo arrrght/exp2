@@ -8,11 +8,11 @@ Ext.define('App.view.org.My', {
 	initComponent: function(){
 		
 		this.columns = [{
-			header: 'Name', dataIndex: 'Name', flex:1
+			header: 'Название', dataIndex: 'name', flex:1
 		},{
-			header: 'City', dataIndex: 'City', flex:1
+			header: 'Город', dataIndex: 'city', flex:1
 		},{
-			header: 'Area', dataIndex: 'Area', flex:1
+			header: 'Адрес', dataIndex: 'addr', flex:1
 		}];
 
 		this.callParent(arguments);

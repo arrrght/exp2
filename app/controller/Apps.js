@@ -24,6 +24,14 @@ Ext.define('App.controller.Apps', {
 					Ext.create('App.view.Cp').show();
 				}
 			},
+			'orgMy': {
+				itemdblclick: function(view, record){
+					var win = Ext.create('App.view.Org');
+					win.setOrgId(record.data._id);
+					//console.log('* win:', win);
+					win.show();
+				}
+			}
 		});
 	},
 
