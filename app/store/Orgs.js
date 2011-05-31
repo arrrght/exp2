@@ -15,8 +15,30 @@ var Schema = Mongoose.Schema,
 		ObjectId = Schema.ObjectId,
 		Query = Mongoose.Query,
     fs = require('fs'),
-		util = require('util');
+		util = require( 'util');
+		
 
+Ext.endpoint('getOrgInfo', function(para){
+	console.log(para);
+	if(para.data && __.isArray(para.data)){
+		var ret = this,
+		    prm = para.data.shift(),
+		    Org = Mongoose.model('Org'),
+		    Ppl = Mongoose.model('Ppl');
+
+		Org.findById( prm.id, function(err, org){
+			if (org){
+				Ppl.find({ orgId: org._id }, function(err, ppls){
+					var result = org.doc;
+					result.ppls = ppls;
+					ret.success(result);
+				});
+			}
+		});
+	}else{
+		this.failure('Param error');
+	}
+});
 Ext.endpoint('getOrgs', function(para){
 	if(para.data && __.isArray(para.data)){
 		var ret = this,

@@ -4,7 +4,8 @@ Ext.define('App.view.Org', {
 
 	requires: [
 		'App.view.ChooserTechTyre',
-		'App.view.org.ExistsBase'
+		'App.view.org.ExistsBase',
+		'App.view.org.Contacts'
 	],
 
 	setOrgId: function(id){
@@ -26,7 +27,7 @@ Ext.define('App.view.Org', {
 
 		items: [{
 			xtype: 'tabpanel', layout: 'fit',
-			activeItem: 4, activeTab: 4,
+			//activeItem: 4, activeTab: 4,
 			items: [ 
 				{ xtype: 'orgBaseInfo', tabName: 'info' },
 				{ xtype: 'orgContacts', tabName: 'contacts' },
@@ -65,51 +66,6 @@ Ext.define('App.grid.plugin.RowExp', {
 	}
 });
 
-// Контакты
-Ext.define('App.view.Org.Contacts', {
-	extend: 'Ext.grid.GridPanel',
-	alias: 'widget.orgContacts',
-
-	plugins: [{
-		tpl: function(data){
-			if (!data.add){ return null };
-			var ret = '<p class="ppl-add-info">';
-			for(var a in data.add){ ret += '<b>' + a + ': </b>' + data.add[a] + ', ' };
-			return ret.slice(0,-2) + '</p>';
-		},
-		ptype: 'rowexp'
-	}],
-
-	initComponent: function(){
-		Ext.apply(this, {
-			title: 'Контакты',
-			tbar: [{ text: 'Новый контакт', xtype: 'button' }],
-
-			store: new Ext.data.Store({
-				fields: [
-					{ name: 'fio' },
-					{ name: 'dolg' },
-					{ name: 'dat', type: 'date' },
-					{ name: 'add' },
-				],
-				data: [
-					{ fio: 'Иванов И.И.', dolg: 'директор', dat: '2011/01/01 12:11', add: { 'ICQ': '123311133', 'Рабочий телефон': '(343) 231-13-12' }  },
-					{ fio: 'Петров П.П.', dolg: 'менеджер', dat: '2011/03/03 1:11', add: { 'Email': 'add@mail.com', 'Комментарий': 'Звонить только до обеда - потом оно спит' } },
-					{ fio: 'Сидоров С.С.', dolg: 'бухгалтер', dat: '2010/07/07 12:12', add: { 'Сотовый': '+7 922 11 23 871', 'Комм': 'Пропал, трудку не берет, женился штоле?'} },
-				]
-			}),
-			columns: [{
-				flex: 3, text: 'ФИО', dataIndex: 'fio', 
-			},{
-				flex: 2, text: 'Должность', dataIndex: 'dolg',
-			},{
-				flex: 2, text: 'Дата последнего контакта', dataIndex: 'dat', renderer: Ext.util.Format.dateRenderer('d F Y, H:i')
-			}],
-			viewConfig: { forceFit: true, itemTpl: 'asdasdasd' }
-		}); this.callParent(arguments);
-	}
-});
-
 // Основная инфа
 Ext.define('App.view.Org.BaseInfo', {
 	extend: 'Ext.panel.Panel',
@@ -123,7 +79,7 @@ Ext.define('App.view.Org.BaseInfo', {
 			items: [{
 				defaults: { flex:1, xtype: 'textfield', labelAlign: 'top' },
 				items: [{
-					flex: 3, fieldLabel: 'Название',// margins: { right: 5 },
+					flex: 3, fieldLabel: 'Название', name: 'name' // margins: { right: 5 },
 				},
 				/*
 				{
@@ -151,24 +107,24 @@ Ext.define('App.view.Org.BaseInfo', {
 			{
 				defaults: { flex:1, xtype: 'textfield', labelAlign: 'top' }, 
 				items: [{
-					fieldLabel: 'Округ', margins: { right: 5 },
+					fieldLabel: 'Округ', name: 'area', margins: { right: 5 },
 				},{
-					fieldLabel: 'Область', margins: { right: 5 },
+					fieldLabel: 'Область', name: 'province', margins: { right: 5 },
 				},{
-					fieldLabel: 'Город'
+					fieldLabel: 'Город', name: 'city'
 				}]
 			},{
 				defaults: { flex:1, xtype: 'textfield', labelAlign: 'top' }, 
 				items: [{
-					fieldLabel: 'Индекс', margins: { right: 5 },
+					fieldLabel: 'Индекс', name: 'zip', margins: { right: 5 },
 				},{
-					flex:3, fieldLabel: 'Улица', margins: { right: 5 },
+					flex:3, fieldLabel: 'Улица', name: 'street', margins: { right: 5 },
 				},{
-					fieldLabel: 'Дом', margins: { right: 5 },
+					fieldLabel: 'Дом', name: 'house', margins: { right: 5 },
 				},{
-					fieldLabel: 'Литера', margins: { right: 5 },
+					fieldLabel: 'Литера', name:'liter', margins: { right: 5 },
 				},{
-					fieldLabel: 'Офис', margins: { right: 5 },
+					fieldLabel: 'Офис', name: 'office', margins: { right: 5 },
 				},{
 					flex: 5, fieldLabel: 'Выш. организация'
 				}]
@@ -185,7 +141,7 @@ Ext.define('App.view.Org.BaseInfo', {
 					}]
 				}]
 			},{
-				height: 90, fieldLabel: 'Комментарий', xtype: 'textarea', labelAlign: 'top'
+				height: 90, fieldLabel: 'Комментарий', name: 'rem', xtype: 'textarea', labelAlign: 'top'
 			}]
 		}); this.callParent(arguments);
 	}

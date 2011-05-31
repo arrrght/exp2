@@ -10,12 +10,14 @@ Ext.define('App.model.Org', {
 		// область
 		{ name: 'province', type: 'string' },
 		{ name: 'zip', type: 'string' },
-		{ name: 'street ', type: 'string' },
+		{ name: 'street', type: 'string' },
 		{ name: 'house', type: 'string' },
 		{ name: 'liter', type: 'string' },
 		{ name: 'office', type: 'string' },
 		{ name: 'addr', type: 'string' },
 		{ name: 'rem', type: 'string' }
 	],
+
+	hasMany: 'Ppls',
 
 });

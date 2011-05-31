@@ -1,5 +1,12 @@
-var lastFilterTypeVal;
+function fromRecToForm(record, form, names){
+	names.split(/\s+/).forEach(function(name){
+		form.down('textfield[name="'+name+'"]').setValue(record[name]);
+	});
+	//
+}
 
+// Клиентская обработка фильтра на шины
+var lastFilterTypeVal;
 function filterTyre() {
 	var t = this.getCpTyre().down('textfield[name=smart]').getValue().split(/ /),
 			store = this.getTyresStore(),

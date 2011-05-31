@@ -1,4 +1,4 @@
-Ext.define('App.model.PplContact', {
+Ext.define('App.model.Contact', {
 	extend: 'Ext.data.Model',
 
 	fields: [
@@ -7,5 +7,7 @@ Ext.define('App.model.PplContact', {
 		{ name: 'cntType', type: 'string' },
 		{ name: 'cnt', type: 'string' },
 	],
+
+	//belongsTo: 'Ppl',
 
 });

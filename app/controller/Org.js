@@ -1,8 +1,8 @@
 Ext.define('App.controller.Org', {
 	extend: 'Ext.app.Controller',
 
-	stores: [ 'Orgs' ],
-	models: [ 'Org', 'PplContact' ],
+	stores: [ 'Orgs', 'Ppls' ],
+	models: [ 'Org', 'Ppl', 'Contact' ],
 
 	requires: [ 
 		'App.view.Org',
