@@ -27,7 +27,7 @@ Ext.define('App.view.Org', {
 
 		items: [{
 			xtype: 'tabpanel', layout: 'fit',
-			//activeItem: 4, activeTab: 4,
+			activeItem: 1, activeTab: 1,
 			items: [ 
 				{ xtype: 'orgBaseInfo', tabName: 'info' },
 				{ xtype: 'orgContacts', tabName: 'contacts' },

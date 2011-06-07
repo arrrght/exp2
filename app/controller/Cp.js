@@ -23,7 +23,7 @@ Ext.define('App.controller.Cp', {
 			},
 			'cpPpl': {
 				itemdblclick: function(v, r){
-					this.fromRecToSet(v, r, 'pplSet', 'fio post');
+					this.fromRecToSet(v, r, 'pplSet', 'fio_fam post');
 				}
 			},
 			'button[action=create]': {
@@ -36,9 +36,8 @@ Ext.define('App.controller.Cp', {
 		var form = btn.up('window').down('form').getForm();
 		console.log(Cp);
 		form.submit({
-			url: '/some',
-			success: function(){
-				console.log('on succ');
+			success: function(a,b){
+				console.log('on succ', a,b);
 			}
 		});
 	},
@@ -53,6 +52,6 @@ Ext.define('App.controller.Cp', {
 
 });
 
-Ext.endpoint('createCp', function(){
-	//
+Ext.endpoint('createCp', function(){ //:: { "formHandler": "true" }
+	return this.success({ a: 1 });
 });

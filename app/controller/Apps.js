@@ -7,7 +7,7 @@ Ext.define('App.controller.Apps', {
 	requires: [ 
 		'App.view.Org',
 		'App.view.ChooserTechTyre',
-		'App.view.org.AddContact'
+		//'App.view.org.AddContact'
 	],
 
 	refs: [
@@ -31,7 +31,6 @@ Ext.define('App.controller.Apps', {
 					Orgs.getOrgInfo(
 						{ id: record.data._id },{
 							success: function(data){
-								W = win; //DEBUG
 								console.log(win, data);
 								fromRecToForm(
 									data,

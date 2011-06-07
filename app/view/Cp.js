@@ -23,6 +23,7 @@ Ext.define('App.view.Cp', {
 				xtype: 'splitter',
 			},{
 				flex: 3, xtype: 'form',
+				api: { submit: Cp.createCp },
 				layout: { type: 'vbox', align: 'stretch' },
 				bodyStyle: 'background-color:#DFE8F6; padding: 5px;',
 				defaults: { anchor: '100%', xtype: 'textfield', labelAlign: 'left' }, 

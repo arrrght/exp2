@@ -1,66 +1,61 @@
 Ext.define('App.view.org.AddContact',{
 	extend: 'Ext.window.Window',
-	alias: 'orgAddContact',
+	alias: 'widget.orgAddContact',
 
 	initComponent: function(){ Ext.apply(this, {
-		modal: true, maximizable: true, 
+		modal: true, maximizable: true, title: 'Человек',
 		height: 450, width: 600, //border: false,
 		layout: { type: 'vbox', align: 'stretch' },
 		defaults: { height: 44, xtype: 'container', layout: 'hbox', border: false },
 		bbar: ['->', {
-			xtype: 'button', text: 'Сохранить изменения'
+			xtype: 'button', itemId: 'save', text: 'Сохранить изменения'
 		},'-',{
-			xtype: 'button', text: 'Отмена'
+			xtype: 'button', itemId: 'cancel', text: 'Отмена'
 		}],
 		items: [{
 			margins: { top: 5 },
 			defaults: { flex:1, xtype: 'textfield', labelAlign: 'top', margins: { right: 5 } },
 			items: [{
-				flex: 3, fieldLabel: 'Фамилия', margins: { left: 5, right: 5 },
+				flex: 3, name: 'fio_fam', fieldLabel: 'Фамилия', margins: { left: 5, right: 5 },
 			},{
-				flex: 2, fieldLabel: 'Имя',
+				flex: 2, name: 'fio_nam', fieldLabel: 'Имя',
 			},{
-				flex: 3, fieldLabel: 'Отчество',
+				flex: 3, name: 'fio_oth', fieldLabel: 'Отчество',
 			}]
 		},{
 			xtype: 'textfield', labelAlign: 'top', height: 44, margins: { left: 5, right: 5 },
-			fieldLabel: 'Должность'
+			name: 'post', fieldLabel: 'Должность'
 		},{
 			xtype: 'label', text: 'Контакты:', height: 18, margins: { left: 5 },
 		},{
 			border: true, flex: 2, xtype: 'gridpanel', margins: { left: 5, right: 5, bottom: 5 },
 			hideHeaders: true,
+			height: 200,
+			listeners: {
+				'selectionchange': function(view, records) {
+					this.down('#delContact').setDisabled(!records.length);
+				}
+			},
 			plugins: [
 				Ext.create('Ext.grid.plugin.RowEditing', {
 					itemId: 'rowEdit',
 					clicksToEdit: 2,
 				})
 			],
-			listeners: {
-				'selectionchange': function(view, records) {
-					this.down('#del').setDisabled(!records.length);
-				}
-			},
 			tbar: [{
-				xtype: 'button', itemId: 'add', text: 'Добавить', handler: function(){
-					var grid = this.up('gridpanel'),
-					    rowEdit = grid.getPlugin(),
-					    r = Ext.ModelManager.create({ cntType: 'Рабочий телефон', cnt: '' }, 'App.model.PplContact');
-					grid.getStore().insert(0, r);
-					rowEdit.startEdit(0,0);
-					grid.doLayout();
-				}
+				xtype: 'button', itemId: 'addContact', text: 'Добавить',
 			},{
-				xtype: 'button', itemId: 'del', text: 'Удалить', disabled: true
+				xtype: 'button', itemId: 'delContact', text: 'Удалить', disabled: true, handler: function(){
+					var grid = this.up('gridpanel');
+					var store = grid.getStore();
+					var sm = grid.getSelectionModel();
+					store.remove(sm.getSelection());
+					sm.select(0);
+					
+				}
 			}],
 			store: {
-				model: 'App.model.PplContact',
-				data: [
-					{ cntType: 'Рабочий телефон', cnt: '+7 495 123 45 6' },
-					{ cntType: 'E-mail', cnt: 'aaa@gmail.com' },
-					{ cntType: 'ICQ', cnt: '123441141' },
-					{ cntType: 'Skype', cnt: '123441141' },
-				]
+				model: 'App.model.Contact',
 			},
 			columns: [
 				{ header: 'тип', dataIndex: 'cntType', flex:1 , field: { xtype: 'combobox',
