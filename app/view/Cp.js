@@ -44,11 +44,11 @@ Ext.define('App.view.Cp', {
 						{ name: 'post', fieldLabel: 'Должность' }
 					]
 				},{
-					fieldLabel: 'Цена',
+					fieldLabel: 'Цена', name: 'price',
 				},{
-					fieldLabel: 'Исх. №',
+					fieldLabel: 'Исх. №', name: 'num',
 				},{
-					flex: 1, xtype: 'textarea', fieldLabel: 'Комментарий',
+					flex: 1, xtype: 'textarea', fieldLabel: 'Комментарий', name: 'rem'
 				}]
 			}
 		]

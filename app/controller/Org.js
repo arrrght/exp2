@@ -45,7 +45,11 @@ Ext.define('App.controller.Org', {
 		});
 		Org.tst01(send, {
 			success: function(ret, action){
-				console.log('SUCC', ret, action);
+				console.log('SUCC', ret);
+				Orgs.getOrgInfo({ id: ret.orgId }, {
+					success: function(data){
+					}
+				});
 			},
 			failure: function(ret, action){
 				console.log('FAIL');
@@ -73,11 +77,7 @@ Ext.define('App.controller.Org', {
 		win.down('textfield[name=fio_nam]').setValue(record.data.fio_nam);
 		win.down('textfield[name=fio_oth]').setValue(record.data.fio_oth);
 		win.down('textfield[name=post]').setValue(record.data.post);
-		var g = win.down('gridpanel').getStore();
-		g.removeAll();
-		record.data.contacts.forEach(function(c){
-			g.add({ cntType: c.type, cnt: c.content });
-		});
+		win.down('gridpanel').getStore().loadData(record.data.contacts, false);
 		win.show();
 	},
 
@@ -88,7 +88,7 @@ Ext.define('App.controller.Org', {
 			items: [{
 				text: 'Коммерческое предложение', handler: function(){
 					var cp = Ext.create('App.view.Cp');
-					cp.down('fieldset[name=pplSet] textfield[name=fio]').setValue(record.data.fio);
+					cp.down('fieldset[name=pplSet] textfield[name=fio]').setValue(record.data.fio_fam);
 					cp.down('fieldset[name=pplSet] textfield[name=post]').setValue(record.data.post);
 					cp.show();
 				}
@@ -129,12 +129,14 @@ Ext.endpoint('tst01', function(para){
 		var ret = this,
 		    prm = para.data.shift(),
 		    Ppl = Mongoose.model('Ppl');
+
 		Ppl.findById( prm.id, function(err, ppl){
 			if(ppl){
 				delete(prm.id);
 				__.extend(ppl, prm);
 				ppl.save(function(err){
 					if(!err){
+						// console.log('ppl:', ppl.contacts, '\nprm:', prm.contacts);
 						ret.success(ppl);
 					}
 				});

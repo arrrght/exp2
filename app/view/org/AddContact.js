@@ -7,11 +7,7 @@ Ext.define('App.view.org.AddContact',{
 		height: 450, width: 600, //border: false,
 		layout: { type: 'vbox', align: 'stretch' },
 		defaults: { height: 44, xtype: 'container', layout: 'hbox', border: false },
-		bbar: ['->', {
-			xtype: 'button', itemId: 'save', text: 'Сохранить изменения'
-		},'-',{
-			xtype: 'button', itemId: 'cancel', text: 'Отмена'
-		}],
+		bbar: ['->', { xtype: 'button', itemId: 'save', text: 'Сохранить изменения' }],
 		items: [{
 			margins: { top: 5 },
 			defaults: { flex:1, xtype: 'textfield', labelAlign: 'top', margins: { right: 5 } },

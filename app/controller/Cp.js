@@ -52,6 +52,8 @@ Ext.define('App.controller.Cp', {
 
 });
 
-Ext.endpoint('createCp', function(){ //:: { "formHandler": "true" }
+Ext.endpoint('createCp', function(prm){ //:: { "formHandler": "true" }
+	console.log(prm);
+	this.app.req.session.cp = prm;
 	return this.success({ a: 1 });
 });

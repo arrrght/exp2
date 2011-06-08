@@ -15,4 +15,18 @@ Ext.define('App.model.Ppl', {
 
 });
 
+// Code for Mongoose
+var Schema = Mongoose.Schema,
+    crypto = require('crypto'),
+		ObjectId = Schema.ObjectId,
+		Query = Mongoose.Query,
+		fields = Ext.getModel('Ppl'),
+		Contacts = new Schema({
+				cntType: String,
+				cnt: String,
+		});
+
+fields.contacts = [ Contacts ];
+var Ppl = new Schema(fields);
+Mongoose.model('Ppl', Ppl);
 

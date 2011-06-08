@@ -49,14 +49,18 @@ app.configure('production', function(){
 });
 
 // Routes
+/*
 app.get('/app/*', function(req, res){
 	res.header('Content-type', 'text/javascript');
 	res.partial(__dirname + req.url);
 });
+*/
 
+/*
 app.get('/', function(req, res){
   res.render('Application.html');
 });
+*/
 
 // Only listen on $ node app.js
 if (!module.parent) {

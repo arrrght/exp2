@@ -9,7 +9,7 @@ Ext.define('App.view.org.Contacts', {
 			if (!data.contacts.length>0){ return '<p class="ppl-add-info"><b>Нет контактов</b></p>' };
 			var ret = '<p class="ppl-add-info">';
 			data.contacts.forEach(function(a){
-				ret += '<b>' + a.type + ': </b>' + a.content + ', ';
+				ret += '<b>' + a.cntType + ': </b>' + a.cnt + ', ';
 			});
 			return ret.slice(0,-2) + '</p>';
 		},

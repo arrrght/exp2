@@ -3,7 +3,6 @@ Ext.define('App.model.Contact', {
 
 	fields: [
 		{ name: 'id', type: 'string' },
-		{ name: 'ppl', type: 'string' },
 		{ name: 'cntType', type: 'string' },
 		{ name: 'cnt', type: 'string' },
 	],
